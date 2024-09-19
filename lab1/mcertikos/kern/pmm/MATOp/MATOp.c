@@ -24,6 +24,16 @@
 unsigned int palloc()
 {
     // TODO
+    unsigned int nps = get_nps();
+    for (unsigned int i = 0; i < nps; i++) {
+        if (at_is_allocated(i) == 0 && at_is_norm(i) == 1) {
+            at_set_allocated(i, 1);
+            return i;
+        }
+    }
+    
+
+    
     return 0;
 }
 
@@ -38,4 +48,5 @@ unsigned int palloc()
 void pfree(unsigned int pfree_index)
 {
     // TODO
+    at_set_allocated(pfree_index, 0);
 }
